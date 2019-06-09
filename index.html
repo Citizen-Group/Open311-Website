@@ -1,0 +1,229 @@
+<!-- 
+    Citizen Operational Group - Test Code 
+    Entry point for test development code for Open 311.
+    Lastest Chrome Supported Development.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>[OTT311] Ottawa's Open 311</title>
+    
+    <!-- ## Style Sheets ## -->
+    <!-- Bootstrap -->
+    <link href="css/3rdparty/bootstrap.min.css" rel="stylesheet">
+    <link href="css/3rdparty/auto-complete.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <div class="container-fluid">
+      <!-- Top Nav -->
+      <div class="row">
+        <div class="col-md-12">
+          <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">              
+              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+              </button> <a class="navbar-brand" href="#">///</a>
+            </div>            
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="active">
+                  <a href="index.html">POST</a>
+                </li>
+                <li>
+                  <a href="#">GET</a>
+                </li>
+              </ul>
+              <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                  <input class="form-control" type="text" />
+                </div> 
+                <button class="btn btn-default" type="submit">
+                  Submit
+                </button>
+              </form>
+              <ul class="nav navbar-nav navbar-right nav-pills">
+                  <button class="btn btn-primary" type="button">
+                    API <span class="badge">HEALTHY</span>
+                  </button>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li>
+                  <a href="#"><img height="25" width="25" alt="COG Logo" src="resources/img/slack_logo.png"/></a>
+                </li>
+                <li>
+                  <a href="#"><img height="25" width="25" alt="COG Logo" src="resources/img/cog_logo.png"/>  Citizen Operational Group</a>
+                </li>                
+              </ul>
+            </div>            
+          </nav>
+        </div>
+        <!-- Main Title -->
+        <div class="col-md-12">
+          <div class="page-header">
+            <h1>Ottawa 311 <br><small>Open 311 Ottawa</small></h1>
+          </div>
+        </div>
+      </div>  
+
+
+      <!-- Content Section Title -->
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Request <small>Choices</small></h2>
+        </div>
+
+      <!-- Start of Content Body -->
+      <!-- Primary Choice -->
+        <div class="col-md-5">
+          <h3>
+              Available Choices
+          </h3>
+          <!-- Primary Choice Element -->
+          <div class="row" id="primary-container">
+          </div>
+
+        </div>
+        <!-- /Primary Choice -->
+
+        <!-- Secondary Choice -->
+        <div class="col-md-5">
+          <div class="row well" hidden="true" id="secondary-container-shell">
+            <!-- Secondary Choice Element -->
+            <div class="row" id="secondary-container">           
+            </div>     
+            <!-- Submission Buttons -->
+            <div class="row" style="text-align: center; margin: 0">
+              <div class="btn-group btn-group-lg" id="SubBut">            
+                <button class="btn btn-default" id="submit" type="submit">
+                  <span class="glyphicon glyphicon-ok"></span> Submit
+                </button> 
+                <button class="btn btn-default" id="reset" type="reset">
+                  <span class="glyphicon glyphicon-remove"></span> Clear
+                </button>
+              </div>
+            </div>
+            <!-- /Submission Buttons -->
+          </div>
+        </div>
+        <!-- /Secondary Choice -->        
+      </div>
+      <!-- End of Content Body -->
+
+      <!-- Divider -->
+      <div class="row">
+        <div class="col-md-12"><hr></hr></div>
+      </div>
+      <!-- /Divider -->
+
+      <!-- Manual API -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputTextRequest">
+              Submit Request
+            </label>
+            <div class="col-sm-8">
+              <input class="form-control" id="inputTextRequest" type="text" />
+            </div>
+            <button class="btn btn-small" id="testButton">
+                <span class="glyphicon glyphicon glyphicon-chevron-left pull-left"></span>Submit
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- /Manual API -->
+
+      <!-- Command Bar -->
+      <div class="row">
+        <div class="col-md-12">
+          <button class="btn btn-small" id="primaryTigButton">
+                <span class="glyphicon glyphicon glyphicon-chevron-up pull-left"></span> Primary Trigger
+          </button>
+          <button class="btn btn-small" id="secondaryTigButton">
+                <span class="glyphicon glyphicon glyphicon-chevron-down pull-left"></span> Secondary Trigger
+          </button>
+        </div>
+      </div>
+      <!-- /Command Bar -->
+
+      <!-- Console -->
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="text-muted"> 
+            Console Output 
+          </h3>
+          <div class="row">
+            <div class="col-md-12" id="console"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Console -->    
+
+    <!-- Push pff the bottom -->
+    <p></p>
+    <p></p>
+
+    <!-- ## SCRIPTS ##  -->
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/3rdparty/bootstrap.min.js"></script>
+    <!-- Autocomplete -->
+    <script src="js/3rdparty/auto-complete.min.js"></script>
+
+    <!-- Application Code -->
+    <script src="js/firstparty/app.js"></script>
+    <script>
+
+      // # Auto complete
+      var autocomplete = new autoComplete({
+        selector: '#inputTextRequest',
+        minChars: 1,
+        source: function (term, suggest) {
+          term = term.toLowerCase();
+          var choices = app.listAvailableKeys();
+          var suggestions = [];          
+          for (i = 0; i < choices.length; i++) {
+            if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);{
+              suggest(suggestions);
+            }
+          }
+        }
+      });
+
+      // # Event Listeners
+      // A catch all click listener for the primary container.
+      // Couldn't figure out how to attach .on to dynamic <a href=
+      // In the way I structured the code. Revise later.
+      $("#primary-container").on("click", "a", (function (evt) {
+        evt.preventDefault(); app.generateSecondary($(this).attr('code'));
+        $("#secondary-container-shell").show();
+      }))
+
+      // # Button Handlers
+      $(primaryTigButton).click(function() {
+        //Triggers the first page load AJAX
+        app.generatePrimary();
+      })
+
+      $(secondaryTigButton).click(function() {
+        //Fixed code for quick development
+        app.generateSecondary('2000178-1'); 
+      })
+
+      // # On Document Ready
+      $(document).ready(function () {
+         app.startup();
+         app.generatePrimary();
+      });
+    </script>
+    <!-- ## /SCRIPTS ##  -->
+  </body>
+</html>
